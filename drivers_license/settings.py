@@ -231,6 +231,7 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # Example refresh token lifetime
 }
 
+<<<<<<< HEAD
 
 CORS_ALLOW_ALL_ORIGINS = get_cors_allow_all_origins()
 
@@ -239,3 +240,6 @@ CORS_ALLOW_METHODS = ['*']
 CORS_ALLOW_HEADERS = ['*']
 
 CORS_ALLOW_CREDENTIALS = True
+=======
+ALLOWED_HOSTS = ['*']
+>>>>>>> 35d378d20c19fef2c5d565fa9d8ad8942d176877
