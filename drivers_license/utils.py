@@ -21,3 +21,19 @@ def get_bool_env(env_var) -> bool:
     return os.getenv(env_var, "False") == "True"
 
 SECRET_KEY = get_env_variable("SECRET_KEY")
+
+# cors_utils.py
+
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+def get_cors_allow_all_origins():
+    """
+    Get the CORS_ALLOW_ALL_ORIGINS setting from environment variables.
+    Returns True if the environment variable is set to 'True' (case insensitive),
+    False otherwise.
+    """
+    return os.getenv('CORS_ALLOW_ALL_ORIGINS', 'False').lower() == 'true'

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from .utils import get_bool_env, get_env_variable
+from .utils import get_cors_allow_all_origins, get_env_variable
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,11 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_env_variable("SECRET_KEY")
+SECRET_KEY = 'django-insecure-r*%2_+v46a&h+39^%9fw^9xy+w14_l12f1ky=u!=sdu^y&p-m5'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["SaviorTe.pythonanywhere.com"]
 
 
 # Application definition
@@ -38,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-   
+
 ]
 
 THIRD_PARTY_APPS = [
@@ -60,6 +61,7 @@ LOCAL_APPS = [
 INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -67,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'drivers_license.urls'
@@ -96,8 +99,11 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME":"SaviorTe$portaldb",
+        "USER":"SaviorTe",
+        "PASSWORD":"licenceportal",
+        "HOST":"SaviorTe.mysql.pythonanywhere-services.com"
     }
 }
 
@@ -224,3 +230,12 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # Example refresh token lifetime
 }
+
+
+CORS_ALLOW_ALL_ORIGINS = get_cors_allow_all_origins()
+
+CORS_ALLOW_METHODS = ['*']
+
+CORS_ALLOW_HEADERS = ['*']
+
+CORS_ALLOW_CREDENTIALS = True

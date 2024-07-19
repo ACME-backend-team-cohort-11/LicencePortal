@@ -3,6 +3,22 @@ from .models import LicenseApplication
 
 class LicenseApplicationSerializer(serializers.ModelSerializer):
     passport_photo = serializers.ImageField()
+    
+    date_of_birth = serializers.DateField(
+        input_formats=['%Y-%m-%d', '%d-%m-%Y', '%d/%m/%Y']
+    )
+    appointment_date = serializers.DateField(
+        input_formats=['%Y-%m-%d', '%d-%m-%Y', '%d/%m/%Y']
+    )
+    date_of_issuance = serializers.DateField(
+        input_formats=['%Y-%m-%d', '%d-%m-%Y', '%d/%m/%Y'], required=False, allow_null=True
+    )
+    date_of_renewal = serializers.DateField(
+        input_formats=['%Y-%m-%d', '%d-%m-%Y', '%d/%m/%Y'], required=False, allow_null=True
+    )
+    date_of_reissuance = serializers.DateField(
+        input_formats=['%Y-%m-%d', '%d-%m-%Y', '%d/%m/%Y'], required=False, allow_null=True
+    )
 
     class Meta:
         model = LicenseApplication
